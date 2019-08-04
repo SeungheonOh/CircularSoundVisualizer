@@ -77,7 +77,7 @@ void perlinInit(int waveLength, int vectorSize){
 
 double getAudio(){
   std::vector<int16_t> samples(terminalSize.ws_col*2);
-  char *path = "/tmp/mpd.fifo";
+  const char *path = std::string("/tmp/mpd.fifo").c_str();
   int fd = open(path , O_RDONLY | O_NONBLOCK);
   if(fd < 0){
 		fprintf(stderr, "Cannot open uhid-cdev %s: %m\n", path);
@@ -158,7 +158,7 @@ int main(){
     */
     perlinInit(10, 300);
 
-    randomness = map(val, 0, 32768, 0, 3);
+    randomness = map(val, 0, 32768, 0, 5);
 
     screen.clear();
 
